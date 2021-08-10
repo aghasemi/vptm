@@ -3,4 +3,4 @@ streamlit-aggrid
 pandas
 numpy
 timm
-pltly
+plotly
