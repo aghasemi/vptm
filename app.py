@@ -47,8 +47,9 @@ y_is_log_scale = sub_cols[2].checkbox('Y axis in log scale', False)
 fig = px.scatter(df, x=x_column, y=y_column, size=size_column, symbol= symbol_column, color= color_column ,log_y= y_is_log_scale, log_x= x_is_log_scale, height = 800, 
                  symbol_sequence= symbols, 
                  hover_name="Name", hover_data={'Model Family': True, 'Parameters': True, 'ImageNet Top1 Error': True, 'Inference Time': True, 'Feature Vector Size': True, 'Input Size': True, 'Log(Inference Time)': False, 'Input Size (Categorised)': False})
-fig.layout.legend.x = 1.1
-fig.layout.coloraxis.colorbar.y = .55
+#fig.layout.legend.x = 1.1
+#fig.layout.coloraxis.colorbar.y = .55
+fig.update_layout({'legend_orientation':'h'})
 
 st.plotly_chart(fig, use_container_width=True)
 
