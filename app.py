@@ -55,6 +55,6 @@ st.plotly_chart(fig, use_container_width=True)
 
 stag.AgGrid(
     df[['Name','Model Family', 'Parameters', 'ImageNet Top1 Error', 'Inference Time', 'Feature Vector Size', 'Input Size']], 
-    height='300px', 
+    height='800px', 
     width='100%',
     fit_columns_on_grid_load=True)
