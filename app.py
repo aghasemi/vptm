@@ -18,7 +18,10 @@ Many neural network architectures have been proposed for solving computer vision
 
 With the very large number of neural network architectures and multiple pretrained modesl for each architectures (varying on training parameters, dataset, etc..), it is sometimes difficult to choose the right model to fine-tune or for transfer learning. The obvious factor to consider is the performance of the model on a benchmark dataset (usually ImageNet). However, not only the best-performing model on ImageNet is not necessarily the best as a feature extractor, but also there are other factors such as the size of the model (for storage purposes), and also the time complexity of inference with the model that come into play. One may simply prefer faster model to a more accurate one, especially when feature extraction would be executed on an embedded/edge device. Also specific to the case of transfer learning is the size of the feature vector computed by the neural network, which varies from less than 200 dimensions to more than 8000. In scenarios with a small training set, it is very desirable to have feature vectors as small as possible. 
 
-For these reasons, and initially for personal use, I developed this buuble chart to more easily visualise and compare the differeces between various pretrained model available in the [PyTorch Image Models](https://github.com/rwightman/pytorch-image-models) library (version {timm.__version__}). One can choose various dimensions for the horizntal and vertical axes as well as colour, size, and shape of the bubbles. It is also possible to filter out certain architectures.''')
+For these reasons, and initially for personal use, I developed this buuble chart to more easily visualise and compare the differeces between various pretrained model available in the [PyTorch Image Models](https://github.com/rwightman/pytorch-image-models) library (version {timm.__version__}). One can choose various dimensions for the horizntal and vertical axes as well as colour, size, and shape of the bubbles. It is also possible to filter out certain architectures.
+
+P.S. Inference time has been measured on Core i7 CPU.
+''')
 
 #customize gridOptions
 gb = stag.GridOptionsBuilder.from_dataframe(df)
