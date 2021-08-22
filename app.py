@@ -42,7 +42,7 @@ df['Input Size (Categorised)'] = df['Input Size'].apply(lambda x: str(x) if x in
 df['Log(Inference Time)'] = np.log(1+df["Inference Time"])
 
 x_column = cols[0].selectbox('Please choose the paramater to show in the horizontal axis', options= ['Parameters', 'Size (MB)', 'ImageNet Top1 Error', 'Inference Time', 'Feature Vector Size', 'Input Size'], index = 0)
-y_column = cols[0].selectbox('Please choose the paramater to show in the vertical axis', options= ['Parameters', 'Size (MB)', 'ImageNet Top1 Error', 'Inference Time', 'Feature Vector Size', 'Input Size'], index = 1)
+y_column = cols[0].selectbox('Please choose the paramater to show in the vertical axis', options= ['Parameters', 'Size (MB)', 'ImageNet Top1 Error', 'Inference Time', 'Feature Vector Size', 'Input Size'], index = 2)
 
 
 color_column = cols[1].selectbox('Please choose the paramater to show as the colour of the blobs', options= ['Parameters', 'Size (MB)', 'ImageNet Top1 Error', 'Inference Time', 'Feature Vector Size', 'Input Size', 'Log(Inference Time)', 'None'], index = 3) #None is not a column name
