@@ -1,4 +1,4 @@
-Index,Name,Model Family,Size,Parameters,Input Size,Feature Vector Size,Inference Time,ImageNet Top1 Error
+Index,Name,Model Family,Size (MB),Parameters,Input Size,Feature Vector Size,Inference Time,ImageNet Top1 Error
 0,adv_inception_v3,inception_v3,91,21785568,299,2048,0.2015381097793579,22.418000000000003
 1,cait_m36_384,cait,1034,270452352,384,768,5.9836669921875,13.946
 2,cait_m48_448,cait,1360,355691520,448,768,13.588858985900881,13.515999999999998
