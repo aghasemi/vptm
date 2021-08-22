@@ -4,3 +4,4 @@ pandas
 numpy
 timm
 plotly
+git+https://github.com/rwightman/pytorch-image-models.git
