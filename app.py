@@ -45,13 +45,13 @@ x_column = cols[0].selectbox('Please choose the paramater to show in the horizon
 y_column = cols[0].selectbox('Please choose the paramater to show in the vertical axis', options= ['Parameters', 'Size (MB)', 'ImageNet Top1 Error', 'Inference Time', 'Feature Vector Size', 'Input Size'], index = 2)
 
 
-color_column = cols[1].selectbox('Please choose the paramater to show as the colour of the blobs', options= ['Parameters', 'Size (MB)', 'ImageNet Top1 Error', 'Inference Time', 'Feature Vector Size', 'Input Size', 'Log(Inference Time)', 'None'], index = 3) #None is not a column name
+color_column = cols[1].selectbox('Please choose the paramater to show as the colour of the blobs', options= ['Parameters', 'Size (MB)', 'ImageNet Top1 Error', 'Inference Time', 'Feature Vector Size', 'Input Size', 'Log(Inference Time)', 'None'], index = 4) #None is not a column name
 
 symbol_column = cols[1].selectbox('Please choose the paramater to show as the shape of the blobs', options= ['Input Size (Categorised)', 'Model Family', 'None'], index = 1)
 
 sub_cols = st.columns((2,1,1))
 
-size_column = sub_cols[0].selectbox('Please choose the paramater to show as the size of the blobs', options= ['Parameters', 'Size (MB)', 'ImageNet Top1 Error', 'Inference Time', 'Feature Vector Size', 'Input Size', 'Log(Inference Time)', 'None'], index = 5)
+size_column = sub_cols[0].selectbox('Please choose the paramater to show as the size of the blobs', options= ['Parameters', 'Size (MB)', 'ImageNet Top1 Error', 'Inference Time', 'Feature Vector Size', 'Input Size', 'Log(Inference Time)', 'None'], index = 6)
 x_is_log_scale = sub_cols[1].checkbox('X axis in log scale', False)
 y_is_log_scale = sub_cols[2].checkbox('Y axis in log scale', False)
 
