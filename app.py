@@ -39,29 +39,37 @@ families = st.multiselect(label='Please choose model families to show', options=
 
 df = df[df['Model Family'].isin(families)]
 
-cols = st.columns((1,1))
+
+(input_size_min, input_size_max) = st.slider(label = "Please choose the desired input image size", min_value = int(df['Input Size'].min()), max_value = int(df['Input Size'].max()), 
+                                                                                   value = (int(df['Input Size'].min()), int(df['Input Size'].max()))  )
+df = df[ (df['Input Size'] >= input_size_min) & (df['Input Size'] <= input_size_max) ]
+
+(feature_vector_size_min, feature_vector_size_max) = st.slider(label = "Please choose the desired feature vector size", min_value = int(df['Feature Vector Size'].min()), max_value = int(df['Feature Vector Size'].max()), 
+                                                                                   value = (int(df['Feature Vector Size'].min()), int(df['Feature Vector Size'].max()))  )
+df = df[ (df['Feature Vector Size'] >= feature_vector_size_min) & (df['Feature Vector Size'] <= feature_vector_size_max) ]
 
 df['Input Size (Categorised)'] = df['Input Size'].apply(lambda x: str(x) if x in {224,256,384} else '<224' if x<224 else '>384' if x>384 else 'Other')
 df['Log(Inference Time)'] = np.log(1+df["Inference Time"])
 
+cols = st.columns((1,1,1))
 x_column = cols[0].selectbox('Please choose the paramater to show in the horizontal axis', options= ['Parameters', 'Size (MB)', 'ImageNet Top1 Error', 'Inference Time', 'Feature Vector Size', 'Input Size'], index = 0)
-y_column = cols[0].selectbox('Please choose the paramater to show in the vertical axis', options= ['Parameters', 'Size (MB)', 'ImageNet Top1 Error', 'Inference Time', 'Feature Vector Size', 'Input Size'], index = 2)
+y_column = cols[1].selectbox('Please choose the paramater to show in the vertical axis', options= ['Parameters', 'Size (MB)', 'ImageNet Top1 Error', 'Inference Time', 'Feature Vector Size', 'Input Size'], index = 2)
 
 
-color_column = cols[1].selectbox('Please choose the paramater to show as the colour of the blobs', options= ['Parameters', 'Size (MB)', 'ImageNet Top1 Error', 'Inference Time', 'Feature Vector Size', 'Input Size', 'Log(Inference Time)', 'None'], index = 4) #None is not a column name
+color_column = cols[2].selectbox('Please choose the paramater to show as the colour of the blobs', options= ['Parameters', 'Size (MB)', 'ImageNet Top1 Error', 'Inference Time', 'Feature Vector Size', 'Input Size', 'Log(Inference Time)', 'None'], index = 4) #None is not a column name
 
-symbol_column = cols[1].selectbox('Please choose the paramater to show as the shape of the blobs', options= ['Input Size (Categorised)', 'Model Family', 'None'], index = 1)
 
-sub_cols = st.columns((2,1,1))
+sub_cols = st.columns((2, 2, 1,1))
 
 size_column = sub_cols[0].selectbox('Please choose the paramater to show as the size of the blobs', options= ['Parameters', 'Size (MB)', 'ImageNet Top1 Error', 'Inference Time', 'Feature Vector Size', 'Input Size', 'Log(Inference Time)', 'None'], index = 6)
-x_is_log_scale = sub_cols[1].checkbox('X axis in log scale', False)
-y_is_log_scale = sub_cols[2].checkbox('Y axis in log scale', False)
+symbol_column = sub_cols[1].selectbox('Please choose the paramater to show as the shape of the blobs', options= ['Input Size (Categorised)', 'Model Family', 'None'], index = 1)
+x_is_log_scale = sub_cols[2].checkbox('X axis in log scale', False)
+y_is_log_scale = sub_cols[3].checkbox('Y axis in log scale', False)
 
 fig = px.scatter(df, x=x_column, y=y_column, 
                  size = None if size_column=='None' else size_column, symbol= None if symbol_column=='None' else symbol_column,
                  color= None if color_column=='None' else color_column,
-                 log_y= y_is_log_scale, log_x= x_is_log_scale, height = 800, 
+                 log_y= y_is_log_scale, log_x= x_is_log_scale, height = 800, range_x=(0, 1.1*df[x_column].max()), range_y=(0, 1.1*df[y_column].max()),
                  symbol_sequence= symbols, 
                  hover_name="Name", hover_data={'Model Family': True, 'Parameters': True, 'ImageNet Top1 Error': True, 'Inference Time': True, 'Feature Vector Size': True, 'Input Size': True, 'Log(Inference Time)': False, 'Input Size (Categorised)': False})
 #fig.layout.legend.x = 1.1
